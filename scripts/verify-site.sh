@@ -157,6 +157,9 @@ else:
 for f, h in pages.items():
     if REJECTED_TIER in h.lower():
         bad(f"{f} still uses {REJECTED_TIER} — that tier measures 3.76:1 here; use var(--text-quiet)")
+    if not re.search(r"(?m)^\s*a\s*\{", h):
+        bad(f"{f} has no global 'a {{ ... }}' rule — an anchor in new copy would fall back to "
+            f"the browser's default blue, far below AA on this ground")
 
 # ---------------------------------------------------------------- avatar & scaffolding
 head("Portrait and scaffolding")

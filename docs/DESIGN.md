@@ -147,7 +147,10 @@ with a CDN link**: no third-party request is a product decision, not a performan
 - Log page: `max-width: 620px`, `padding: 48px 24px 80px`.
 - The front page must fit **one phone screen** — roughly 640px of content for an 844px
   phone — with no horizontal scroll at 360px wide. Prefer shorter copy over smaller type.
-- The log page is the only page that scrolls.
+- The log page is the only page that scrolls. Its `body` is a flex column and the footer has
+  `margin-top: auto`, so on a short page (an empty log, before the first entry) the footer
+  sits at the bottom of the viewport instead of floating mid-page with dead space beneath it.
+  On a long page the layout is identical to a plain block flow.
 
 ### Components
 
@@ -155,8 +158,14 @@ with a CDN link**: no third-party request is a product decision, not a performan
   `--accent-dim → --accent → --accent-bright → --accent-dim` (from 210°), plus a soft glow
   at 22% of the accent. Tapping it shows a "boop!" pill — optional personality, carrying no
   information, so removing it is safe.
-- **Links**: accent colour, `1px` underline at 35% opacity, brightening to
-  `--accent-bright` on hover. The footer's is the only non-accent link in the log page.
+- **Links**: every anchor is the accent colour. A global rule styles `a`, `a:hover` and
+  `a:focus-visible` **before** the component rules, which refine it rather than replace it —
+  because a link with no rule of its own falls through to the browser's default blue, which
+  measures far below AA on this ground. That happened once (the log page's intro sentence,
+  where one anchor of two was covered) and is now impossible: `scripts/verify-site.sh` fails
+  without a global `a { … }` rule. Underlines are a 1px accent line at 35% opacity,
+  brightening to `--accent-bright` on hover; the log footer's link is deliberately muted grey
+  instead, as it points at the same place as the accent link above it.
 - **Log entry**: a card (`rgba(22,27,34,0.6)` on a `#21262d` border, 12px radius, 18×20px
   padding) with `.title` as the heading and `.date` as an uppercase byline beneath it.
 - **Empty state**: `<p class="empty">` inside the `ENTRIES` block, replaced by the first

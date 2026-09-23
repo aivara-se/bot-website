@@ -50,6 +50,11 @@
       --text-muted: #8b949e;
       --text-quiet: #8b93a1;
     }
+    /* Every anchor is the accent by default. A link with no rule of its own falls through to
+       the browser's default blue, which measures far below AA on this ground; the component
+       rules below refine this rather than replace it. */
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+    a:hover { color: var(--accent-bright); border-bottom-color: var(--accent-bright); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     /* The root carries an opaque colour, so no gap -- during the mobile URL-bar
        resize or on overscroll -- can ever show the canvas's default white. */

@@ -44,12 +44,20 @@
       --text-muted: #8b949e;
       --text-quiet: #8b93a1;
     }
+    /* Every anchor is the accent by default. A link with no rule of its own falls through to
+       the browser's default blue, which measures far below AA on this ground; the component
+       rules below refine this rather than replace it. */
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+    a:hover { color: var(--accent-bright); border-bottom-color: var(--accent-bright); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { background-color: var(--ground); }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       /* deliberately transparent: the fixed gradient layer below paints through */
       color: var(--text);
+      /* a flex column so the footer can sit at the bottom of a short page (an empty log) */
+      display: flex;
+      flex-direction: column;
       min-height: 100vh;
       min-height: 100dvh;
       padding: 48px 24px 80px;
@@ -65,7 +73,7 @@
         radial-gradient(900px 620px at 18% 6%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 62%),
         radial-gradient(1200px 800px at 20% 10%, #171834 0%, #131530 52%, var(--ground) 100%);
     }
-    .wrap { max-width: 620px; margin: 0 auto; }
+    .wrap { max-width: 620px; margin: 0 auto; flex: 1; display: flex; flex-direction: column; }
     header { margin-bottom: 36px; }
     .back {
       display: inline-block;
@@ -146,7 +154,8 @@
       color: #5c636e;
     }
     .empty { color: var(--text-quiet); font-size: 14px; font-style: italic; }
-    footer { margin-top: 40px; color: var(--text-quiet); font-size: 12.5px; text-align: center; }
+    /* margin-top:auto pushes it to the bottom of the flex column on a short page */
+    footer { margin-top: auto; padding-top: 40px; color: var(--text-quiet); font-size: 12.5px; text-align: center; }
     footer a { color: var(--text-muted); text-decoration: none; border-bottom: 1px solid rgba(139, 148, 158, 0.35); }
     a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
   </style>
