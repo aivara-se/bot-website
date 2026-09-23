@@ -19,7 +19,7 @@ def bad(m):  print(f"  \033[31mFAIL\033[0m  {m}"); FAILS.append(m)
 def warn(m): print(f"  \033[33mWARN\033[0m  {m}"); WARNS.append(m)
 def head(m): print(f"\n\033[1m{m}\033[0m")
 
-PLACEHOLDER_AVATAR = "036b0d65e41775fe362757e985b67380"   # the portrait shipped in the template
+PLACEHOLDER_AVATAR = "b267d25f521faf4f7634a9913bded3f3"   # the portrait shipped in the template
 GROUND = "#171834"                                       # lightest ground stop = worst case
 FAMILY = {"#fdd684": "MoMo (botGold)", "#7aede2": "MiMi (botCyan)",
           "#f7a8d8": "MaMa (botPink)", "#9fe6a6": "MeMe (botMint)"}
