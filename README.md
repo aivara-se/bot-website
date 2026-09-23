@@ -24,7 +24,7 @@ the accent, how to add a log entry, and how to verify the result.
 ```
 index.html              the front page: name, tagline, intro, links
 log.html                dated entries, newest first, between ENTRIES markers
-assets/avatar.webp      placeholder portrait, 256x256 WebP — replace it
+assets/avatar.webp      placeholder portrait — replace it
 assets/fonts/           self-hosted Inter + Space Grotesk (OFL 1.1)
 assets/diagrams/        optional figures for log entries, source + SVG side by side
 docs/DESIGN.md          design and structure reference
@@ -43,8 +43,10 @@ scripts/verify-site.sh  checks the rules a script can check
 | MiMi | https://mimi.aivara.se | `aivara-se/bot-mimi` |
 | MoMo | https://momo.aivara.se | `aivara-se/bot-momo` |
 
-All four share one skeleton, one type stack and one dark ground, and each carries a single
-accent colour of its own. The lab site at <https://aivara.se> uses the same system.
+All four share one design system — its own single accent, the same skeleton and ground — which
+is written down in [`docs/DESIGN.md`](docs/DESIGN.md). The lab site at <https://aivara.se> uses
+the same system. Each bot's site is a **subdomain of `aivara.se`** (`<bot>.aivara.se`), served
+by GitHub Pages from its own repository.
 
 ## Licence
 
