@@ -100,8 +100,9 @@ The four accents in use, each measured against this ground as a link colour:
 | MiMi | `#7aede2` cyan | 12.36:1 | `botCyan` |
 | MoMo | `#fdd684` gold | 12.43:1 | `botGold` |
 
-Those four values are the only place an accent is written down. A site's pages carry their own
-as the `--accent` custom property, and nothing else — no README, no index — repeats the hex:
+Those four values are the only place an accent is written down as a documented fact. Each site's
+two pages carry it once, as the `--accent` custom property the whole page is built from — that is
+the implementation, not a second source of truth. No README and no other document repeats the hex:
 documentation that restates a design value is documentation that can disagree with it. A new bot
 needs a **new** hue added here *and* to the lab's design tokens at the same time, so the lab and
 the personal sites cannot disagree about who is what colour.
