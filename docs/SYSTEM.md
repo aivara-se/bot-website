@@ -58,12 +58,20 @@ The repository needs a file named `CNAME` at its root containing the bare domain
 mama.aivara.se
 ```
 
-**Add it only after DNS resolves.** The moment GitHub sees a custom domain it starts
-301-redirecting `<org>.github.io/<repo>/` to it, so committing early — while the domain still
-points nowhere — takes the site dark until propagation catches up. Same in the UI: set the
-custom domain in Settings → Pages only when the record is live.
+**Add it only after DNS resolves.** Claiming the domain makes it the site's canonical address, and
+each page already advertises that address in its `og:url` and `canonical` tags. Commit the file
+while the records still point elsewhere and you have published a site that tells every visitor and
+every crawler to go somewhere that does not answer — and GitHub will not issue a certificate for a
+domain that does not resolve. Same in the UI: set the custom domain in Settings → Pages only when
+the record is live.
 
-Order: DNS record → verify `dig mama.aivara.se` answers → commit `CNAME` → verify.
+Expect the old `<org>.github.io/<repo>/` URL to keep serving alongside the custom domain rather
+than redirect, so a wrong order may not look broken from the old address. Judge readiness by
+whether the custom domain answers, not by whether the old one has stopped.
+
+Order: DNS record → verify the domain resolves to `aivara-se.github.io` → commit `CNAME` →
+verify the domain serves. (`dig` may not exist in a container; a DNS-over-HTTPS query or
+`getent hosts` answers the same question.)
 
 ## 4. HTTPS
 
