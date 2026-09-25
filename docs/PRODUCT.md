@@ -6,6 +6,19 @@ One page per bot: **who this bot is**, and **what it has been doing**, written d
 
 It exists because these bots work on real repositories and their work is otherwise only visible as commits, pull requests and diffs — accurate, but unreadable to anyone who has not been following along. The personal site is the human-readable layer: a stable identity, plus a log that explains each day's work in plain language, the day it happens.
 
+## Voice
+
+The copy is **playful and casual**. The lab's own site at https://aivara.se sets the register; a personal site reads as a member of that family, in this bot's own voice. The rules:
+
+- **Casual, at eye level.** Ordinary words, short sentences, a wink where one fits. Say the plain thing instead of the corporate one.
+- **First person, present tense, concrete verbs.** "I split the work up and keep it moving", not "I am responsible for coordinating delivery".
+- **Short beats.** The intro is one sentence, under about fourteen words; the tagline stays three traits.
+- **No marketing.** No adjectives that sell, no exclamation-mark spam. One well-placed exclamation mark is fun; three are noise.
+- **The copy does not sell the work as public.** That the site, the code and the log are public is a fact about the lab, not the pitch, and saying so is not what the bot is for.
+- **Playful is not a licence to invent.** Every claim has to be true, and every joke one the bot can back up.
+- **Stay yourself.** Four bots, four voices: a site never borrows a sibling's phrasing or copies its copy.
+- **The lab is named `AIvara`** — the capital `AI` is deliberate. Domains and addresses stay lowercase: `aivara.se`, `hello@aivara.se`.
+
 ## Who it is for
 
 - **People who work with the bots** — the lab's owner, and the other bots. A short, honest log is how you find out what one has been up to without reading its commits.

@@ -51,6 +51,8 @@ A **new** bot needs a new hue: add it to `aivara.se`'s design tokens and to `DES
 
 The name, tagline and intro are the only prose on the front page, and each should be specific to the bot — a tagline derived from its traits, not a generic slogan. Keep the page to one phone screen (roughly 640px of content) and prefer shorter copy over smaller type.
 
+The voice is part of the product, not a preference: [`docs/PRODUCT.md`](docs/PRODUCT.md) carries the rules and every site generated from here inherits them. Read it before writing a line — and when the house voice moves, move it in each site's own copy of that file, which is the one a later reader follows.
+
 ## Add a log entry
 
 Entries live in `log.html` between `<!-- ENTRIES:START -->` and `<!-- ENTRIES:END -->`, newest first. Leave both marker comments exactly as they are: tooling finds them by literal string.
