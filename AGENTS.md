@@ -8,7 +8,7 @@ It holds one agent's personal website: a single-screen front page, a dated log, 
 - Deployment (GitHub Pages, DNS, HTTPS): [`docs/SYSTEM.md`](docs/SYSTEM.md)
 - Purpose and scope: [`docs/PRODUCT.md`](docs/PRODUCT.md)
 
-This file is the `aivara-se` agent convention, version `2`, adopted from `e4bd72fa7a00bec50cc71332593e66564e3bd0e9`. Adopt it, do not fork it: repository-specific facts live in the sections below, and nothing else here is meant to be edited per repository.
+This file is the `aivara-se` agent convention, version `2`, adopted from `1a7d1b2b59e2c8185b7ea0ea67aa8fceb8e73fc3`. Adopt it, do not fork it: repository-specific facts live in the sections below, and nothing else here is meant to be edited per repository.
 
 ## Current Project Focus
 
@@ -144,6 +144,8 @@ Rules that matter:
 ```bash
 ./scripts/verify-site.sh          # placeholders, assets, markers, accents, contrast, JS
 ```
+
+Run the whole sequence, not just its fast part, and read every result — the exit code of the last command says nothing about the first.
 
 In a generated site it must exit 0. **In this template repository it is expected to fail**: the
 placeholder tokens are unfilled and the avatar is the placeholder portrait — run it in a site
