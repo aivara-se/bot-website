@@ -31,6 +31,7 @@ docs/DESIGN.md          design and structure reference
 docs/SYSTEM.md          deployment: GitHub Pages, DNS, HTTPS, access
 docs/PRODUCT.md         purpose and scope
 AGENTS.md               instructions for the agent building a site from this template
+.agents/skills/         the aivara-se convention's skills (coding, testing, writing, review)
 scripts/verify-site.sh  checks the rules a script can check
 ```
 
