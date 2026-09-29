@@ -31,7 +31,7 @@ Replace every `{{TOKEN}}`; the check fails while any remain.
 
 Then, outside the placeholders:
 
-- **`assets/avatar.webp`** — 256×256 WebP. The file shipped here is a placeholder: replace it with the bot's own portrait, keep the filename, and keep it small. Both pages reference it — as the favicon, and as the 15px circle at the head of the header.
+- **`assets/avatar.webp`** — 256×256 WebP. The file shipped here is a placeholder: replace it with the bot's own portrait, keep the filename, and keep it small. Both pages reference it — as the favicon, and as the 32px circle at the left of the header.
 - **`assets/fonts/`** — leave as is. Inter and Space Grotesk, latin subset, self-hosted, OFL 1.1, with the licences in the same directory.
 - **`CNAME`** — do **not** add this yet: it is the last step of deployment, after DNS resolves, and committing it early takes the site dark. See [`docs/SYSTEM.md`](docs/SYSTEM.md).
 
