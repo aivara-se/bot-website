@@ -73,13 +73,15 @@
         radial-gradient(900px 620px at 18% 6%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 62%),
         radial-gradient(1200px 800px at 20% 10%, #171834 0%, #131530 52%, var(--ground) 100%);
     }
-    /* The header: the bot's own face at the left of the top line, its links at the right,
-       one block on every page. Fixed -- the front page is one screen and does not scroll.
-       The markup between the HEADER markers is byte-identical on both pages and
-       scripts/verify-site.ts fails if the two copies diverge. This page scrolls, so each
-       end of a header carries its own ground. */
+    /* The header: the bot's own face at the left of the top line, its links at the right --
+       one block and one style on every page, the links bare with nothing behind them.
+       It is absolute, not fixed, so it belongs to the page and leaves with it when the page
+       scrolls. Nothing scrolls on the front page; this page needs the same rule because
+       things do. The markup between the HEADER markers is byte-identical on both pages, and
+       scripts/verify-site.ts fails if the copies diverge, if this stops being absolute, or
+       if either page puts a panel behind the links again. */
     .top {
-      position: fixed;
+      position: absolute;
       top: 20px;
       left: 22px;
       right: 22px;
@@ -128,16 +130,9 @@
       display: block;
       fill: currentColor;
     }
-    /* This page's own addition, and the only header rule either page does not share: it
-       scrolls, so the links need something behind them or the entries show through. The
-       small panel is the shape the corner cluster used to have; the avatar's ring is the
-       other ground. Nothing spans the width -- a bar across the top would cut the page. */
-    .top .links {
-      background: var(--ground);
-      padding: 8px 10px;
-      border-radius: 10px;
-    }
-    .wrap { max-width: 620px; margin: 0 auto; flex: 1; display: flex; flex-direction: column; padding-top: 72px; }
+    /* No rule of its own for the header here: it is the same on both pages, the links bare,
+       and it scrolls away with the entries instead of sitting over them. */
+    .wrap { max-width: 620px; margin: 0 auto; flex: 1; display: flex; flex-direction: column; padding-top: 24px; }
     header { margin-bottom: 36px; }
     h1 {
       font-family: 'Space Grotesk', sans-serif;
