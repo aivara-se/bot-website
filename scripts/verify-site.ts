@@ -202,9 +202,12 @@ else {
   ok("both pages carry the identical header block");
   const avatar = /class="portrait"[\s\S]*?<img[^>]*>/.exec(headers["index.html"]!)?.[0] ?? "";
   if (!avatar) bad("the header carries no avatar");
-  else if (!/width="32"[^>]*height="32"/.test(avatar))
-    bad("the header's avatar is not 32x32 — the size is on the img, not only in the CSS");
-  else ok("the header carries the 32x32 avatar");
+  else if (!/width="24"[^>]*height="24"/.test(avatar))
+    bad("the header's avatar is not 24x24 — the size is on the img, not only in the CSS");
+  else ok("the header carries the 24x24 avatar");
+  if (/class="icon"/.test(headers["index.html"]!))
+    bad("the header carries a GitHub mark again — the header is the avatar and two links, nothing else");
+  else ok("the header carries no GitHub mark");
 }
 if (/class="back"/.test(pages["log.html"])) bad("log.html still has a back link — the header replaced it");
 else ok("no back link on the log page");
