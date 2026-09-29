@@ -215,6 +215,16 @@ for (const [f, h] of Object.entries(pages)) {
 }
 if (Object.values(pages).every((h) => /\.top\s*\{[^}]*\bleft:/s.test(h) && /\.top\s+\.portrait\s*\{[^}]*conic-gradient/s.test(h)))
   ok("both pages put the header at the left and ring the avatar");
+const posOf = (h: string) => /\.top\s*\{[^}]*position:\s*([a-z]+)/s.exec(h)?.[1] ?? null;
+const bareTop = (h: string) => !/\.top\s*\{[^}]*background/s.test(h) && !/\.top\s+\.links\s*\{[^}]*background/s.test(h);
+for (const [f, h] of Object.entries(pages)) {
+  if (posOf(h) !== "absolute")
+    bad(`${f}: .top is ${posOf(h) ?? "not positioned"} — it must be absolute, so the header leaves with the page instead of staying fixed over it`);
+  if (!bareTop(h))
+    bad(`${f}: the header carries a background — the links are bare, the same style on every page`);
+}
+if (Object.values(pages).every((h) => posOf(h) === "absolute" && bareTop(h)))
+  ok("the header is absolute and its links bare on both pages");
 
 // ---------------------------------------------------------------- colour
 head("Colour");

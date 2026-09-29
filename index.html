@@ -166,12 +166,15 @@
       color: var(--accent-bright);
       border-bottom-color: var(--accent-bright);
     }
-    /* The header: the bot's own face at the left of the top line, its links at the right,
-       one block on every page. Fixed -- the front page is one screen and does not scroll.
-       The markup between the HEADER markers is byte-identical on both pages and
-       scripts/verify-site.ts fails if the two copies diverge. */
+    /* The header: the bot's own face at the left of the top line, its links at the right --
+       one block and one style on every page, the links bare with nothing behind them.
+       It is absolute, not fixed, so it belongs to the page and leaves with it when the page
+       scrolls. Nothing scrolls here; the log page needs the same rule because things do.
+       The markup between the HEADER markers is byte-identical on both pages, and
+       scripts/verify-site.ts fails if the copies diverge, if this stops being absolute, or
+       if either page puts a panel behind the links again. */
     .top {
-      position: fixed;
+      position: absolute;
       top: 20px;
       left: 22px;
       right: 22px;
