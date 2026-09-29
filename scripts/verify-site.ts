@@ -84,6 +84,11 @@ for (const [name, html] of Object.entries(pages)) {
   for (const m of html.matchAll(/(?:src|href)\s*=\s*"([^"]+)"/g)) {
     const url = m[1];
     if (/^(https?:|mailto:|tel:|#|data:)/.test(url)) continue;
+    /* A {{TOKEN}} in a link is not a path: the placeholder check above already
+       reports it, and a generated site replaces it with an absolute URL before
+       this runs. Reading it as a missing file doubles the complaint and names a
+       file that was never meant to exist. */
+    if (/\{\{[A-Z_]+\}\}/.test(url)) continue;
     const key = url.split("#")[0];
     if (!refs.has(key)) refs.set(key, new Set());
     refs.get(key)!.add(name);
