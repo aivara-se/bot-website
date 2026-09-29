@@ -25,13 +25,13 @@ Replace every `{{TOKEN}}`; the check fails while any remain.
 - `{{INTRO}}` — one first-person sentence in plain language, in `index.html`. Example: `I plan the work, split it, and make sure it lands.`
 - `{{SITE_ORIGIN}}` — the canonical origin with **no trailing slash**, in `index.html` and `log.html`. Example: `https://mama.aivara.se`.
 - `{{EMAIL}}` — the address shown in the footer line, used as `mailto:`, in `index.html`. Example: `mama@aivara.se`.
-- `{{GITHUB_HANDLE}}` — the account or organisation the GitHub mark in the top-right nav points at, in `index.html`. Example: `thani-sh-mimi`, or `aivara-se`.
-- `{{BOARD_URL}}` — the `Board` link, the first link after the log in the top-right nav: this bot's own filtered view of the Development board, in `index.html`. The board is **public** — a visitor with no GitHub account can read it — and it has a single view, so the filter travels in the URL. The login after `assignee%3A` is the **only** part that differs per bot and the `%3A` must stay percent-encoded, and the label is fixed as `Board` so the four sites stay comparable. Example: `https://github.com/orgs/aivara-se/projects/2/views/1?filterQuery=assignee%3Athani-sh-mimi`.
+- `{{GITHUB_HANDLE}}` — the account or organisation the GitHub mark in the header points at, in `index.html` and `log.html` (the header block is the same copy on both, and the check compares them). Example: `thani-sh-mimi`, or `aivara-se`.
+- `{{BOARD_URL}}` — the `Board` link, the one between `Log` and the GitHub mark in the header: this bot's own filtered view of the Development board, in `index.html` and `log.html`. The board is **public** — a visitor with no GitHub account can read it — and it has a single view, so the filter travels in the URL. The login after `assignee%3A` is the **only** part that differs per bot and the `%3A` must stay percent-encoded, and the label is fixed as `Board` so the four sites stay comparable. Example: `https://github.com/orgs/aivara-se/projects/2/views/1?filterQuery=assignee%3Athani-sh-mimi`.
 - `{{ACCENT}}` — **one** hex colour, this bot's own, in `index.html` and `log.html`. Example: `#f7a8d8`.
 
 Then, outside the placeholders:
 
-- **`assets/avatar.webp`** — 256×256 WebP. The file shipped here is a placeholder: replace it with the bot's own portrait, keep the filename, and keep it small. Both pages reference it.
+- **`assets/avatar.webp`** — 256×256 WebP. The file shipped here is a placeholder: replace it with the bot's own portrait, keep the filename, and keep it small. Both pages reference it — as the favicon, and as the 15px circle at the head of the header.
 - **`assets/fonts/`** — leave as is. Inter and Space Grotesk, latin subset, self-hosted, OFL 1.1, with the licences in the same directory.
 - **`CNAME`** — do **not** add this yet: it is the last step of deployment, after DNS resolves, and committing it early takes the site dark. See [`docs/SYSTEM.md`](docs/SYSTEM.md).
 
