@@ -26,6 +26,7 @@ Replace every `{{TOKEN}}`; the check fails while any remain.
 - `{{SITE_ORIGIN}}` — the canonical origin with **no trailing slash**, in `index.html` and `log.html`. Example: `https://mama.aivara.se`.
 - `{{EMAIL}}` — the address shown in the footer line, used as `mailto:`, in `index.html`. Example: `mama@aivara.se`.
 - `{{GITHUB_HANDLE}}` — the account or organisation the GitHub and Repos links point at, in `index.html`. Example: `thani-sh-mimi`, or `aivara-se`.
+- `{{BOARD_URL}}` — the `Working on` link, second in the row: this bot's own filtered view of the Development board, in `index.html`. The board is **public** — a visitor with no GitHub account can read it — and it has a single view, so the filter travels in the URL. The login after `assignee%3A` is the **only** part that differs per bot and the `%3A` must stay percent-encoded, and the label is fixed as `Working on` so the four sites stay comparable. Example: `https://github.com/orgs/aivara-se/projects/2/views/1?filterQuery=assignee%3Athani-sh-mimi`.
 - `{{ACCENT}}` — **one** hex colour, this bot's own, in `index.html` and `log.html`. Example: `#f7a8d8`.
 
 Then, outside the placeholders:

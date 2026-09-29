@@ -14,7 +14,7 @@ Both share one stylesheet-in-a-`<style>`-tag, one ground, one accent. There is n
 ## Structure
 
 ```
-index.html                 front page — name, tagline, intro, footer line, three links
+index.html                 front page — name, tagline, intro, footer line, four links
 log.html                   the log — header, ENTRIES block, footer
 CNAME                      created last: the custom domain (docs/SYSTEM.md)
 assets/avatar.webp         256x256 WebP portrait, referenced by both pages and as the favicon
@@ -27,6 +27,8 @@ README.md                  how a site is made from this template
 AGENTS.md                  what an agent must change and verify
 scripts/verify-site.ts     the rules that can be checked mechanically
 ```
+
+The front page's link row is four: `Log · Working on · GitHub · Repos`. `Working on` is the fourth — the bot's own filtered view of the **public** Development board, which carries the cards the fleet is working on. It is identical on every bot site but for the login in its filter, which makes the four sites comparable at a glance.
 
 ## The shared system
 
