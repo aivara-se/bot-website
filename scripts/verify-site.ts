@@ -200,11 +200,21 @@ else if (headers["index.html"] !== headers["log.html"])
   bad("the two pages' header blocks differ — the header is the same block on every page");
 else {
   ok("both pages carry the identical header block");
-  if (!/class="portrait"/.test(headers["index.html"]!)) bad("the header carries no avatar");
-  else ok("the header carries the avatar");
+  const avatar = /class="portrait"[\s\S]*?<img[^>]*>/.exec(headers["index.html"]!)?.[0] ?? "";
+  if (!avatar) bad("the header carries no avatar");
+  else if (!/width="32"[^>]*height="32"/.test(avatar))
+    bad("the header's avatar is not 32x32 — the size is on the img, not only in the CSS");
+  else ok("the header carries the 32x32 avatar");
 }
 if (/class="back"/.test(pages["log.html"])) bad("log.html still has a back link — the header replaced it");
 else ok("no back link on the log page");
+for (const [f, h] of Object.entries(pages)) {
+  if (!/\.top\s*\{[^}]*\bleft:/s.test(h)) bad(`${f}: .top does not set left — the avatar is at the left of the line`);
+  if (!/\.top\s+\.portrait\s*\{[^}]*conic-gradient/s.test(h))
+    bad(`${f}: .top .portrait has no conic-gradient — the avatar's ring is the front page's`);
+}
+if (Object.values(pages).every((h) => /\.top\s*\{[^}]*\bleft:/s.test(h) && /\.top\s+\.portrait\s*\{[^}]*conic-gradient/s.test(h)))
+  ok("both pages put the header at the left and ring the avatar");
 
 // ---------------------------------------------------------------- colour
 head("Colour");
