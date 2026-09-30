@@ -2,7 +2,7 @@
 
 Everything runs on **GitHub Pages**, served straight from the repository. There is no build step, no CI workflow, no hosting account, and no runtime: `main` is the deployed site.
 
-- **Host** — GitHub Pages (`aivara-se/bot-<name>`)
+- **Host** — GitHub Pages, from the repository in its bot's own account (`<login>/bot-<name>`, e.g. `thani-sh-mama/bot-mama`)
 - **Source** — branch `main`, folder `/` (root)
 - **Build** — none: the committed HTML is the published HTML
 - **TLS** — GitHub-managed Let's Encrypt certificate, renewed automatically
@@ -10,7 +10,7 @@ Everything runs on **GitHub Pages**, served straight from the repository. There 
 - **Email** — the domain owner; the site only *displays* the address
 - **Repo visibility** — public (Pages on a private repo needs a paid plan — see below)
 
-Until the custom domain answers, the site is reachable at `https://aivara-se.github.io/bot-<name>/`.
+Until the custom domain answers, the site is reachable at `https://<login>.github.io/bot-<name>/` — the **owner's** Pages host, which follows whoever owns the repository: `aivara-se.github.io` while the organisation owned the sites, `thani-sh-<name>.github.io` once a site lives in its bot's own account.
 
 ## 1. Enable Pages
 
@@ -22,7 +22,7 @@ Repository → **Settings → Pages** → *Build and deployment*:
 Via API, if the agent has admin on the repo:
 
 ```bash
-gh api -X POST repos/aivara-se/bot-mama/pages \
+gh api -X POST repos/<login>/bot-<name>/pages \
   -f 'source[branch]=main' -f 'source[path]=/'
 ```
 
@@ -34,9 +34,9 @@ One record per site, in Cloudflare (or wherever `aivara.se` is managed):
 
 | Type | Name | Value | Proxy |
 |---|---|---|---|
-| `CNAME` | `mama` | `aivara-se.github.io` | **DNS only (grey cloud)** |
+| `CNAME` | `mama` | `thani-sh-mama.github.io` | **DNS only (grey cloud)** |
 
-- The value is the **organisation's** Pages host, `aivara-se.github.io` — not the repo name.
+- The value is the **owner's** Pages host, `thani-sh-<name>.github.io` — not the repo name, and not a fixed host. It only read `aivara-se.github.io` while the organisation owned the sites; a site in a bot's own account answers on that account's host. The record names the **owner**, never the repository, which is why a move takes the domain down: the record has to change before the domain can come back.
 - **Proxy status must be off.** GitHub issues its own certificate for the custom domain; a second proxy in front (the orange cloud) double-proxies the request and risks certificate handshake failures.
 - One record per bot: `mama`, `meme`, `mimi`, `momo` → the same value.
 - The apex domain (`aivara.se`) is untouched by any of this.
@@ -51,9 +51,9 @@ mama.aivara.se
 
 **Add it only after DNS resolves.** Claiming the domain makes it the site's canonical address, and each page already advertises that address in its `og:url` and `canonical` tags. Commit the file while the records still point elsewhere and you have published a site that tells every visitor and every crawler to go somewhere that does not answer — and GitHub will not issue a certificate for a domain that does not resolve. Same in the UI: set the custom domain in Settings → Pages only when the record is live.
 
-Expect the old `<org>.github.io/<repo>/` URL to keep serving alongside the custom domain rather than redirect, so a wrong order may not look broken from the old address. Judge readiness by whether the custom domain answers, not by whether the old one has stopped.
+Expect the old `<login>.github.io/<repo>/` URL to keep serving alongside the custom domain rather than redirect, so a wrong order may not look broken from the old address. Judge readiness by whether the custom domain answers, not by whether the old one has stopped.
 
-Order: DNS record → verify the domain resolves to `aivara-se.github.io` → commit `CNAME` → verify the domain serves. (`dig` may not exist in a container; a DNS-over-HTTPS query or `getent hosts` answers the same question.)
+Order: DNS record → verify the domain resolves to the owner's Pages host (`thani-sh-<name>.github.io`) → commit `CNAME` → verify the domain serves. (`dig` may not exist in a container; a DNS-over-HTTPS query or `getent hosts` answers the same question.)
 
 ## 4. HTTPS
 
@@ -74,10 +74,10 @@ Each site shows `mama@aivara.se` (and so on) in a `mailto:` link. **The reposito
 
 ```bash
 # Pages enabled and pointed where you expect
-gh api repos/aivara-se/bot-mama/pages --jq '{url: .html_url, cname: .cname, https: .https_enforced}'
+gh api repos/<login>/bot-<name>/pages --jq '{url: .html_url, cname: .cname, https: .https_enforced}'
 
 # last build state: 'built' is the success value (~30s-2min after a push)
-gh api repos/aivara-se/bot-mama/pages/builds/latest --jq '{status, error, duration, created_at}'
+gh api repos/<login>/bot-<name>/pages/builds/latest --jq '{status, error, duration, created_at}'
 
 # the site actually serves, and serves the right content
 curl -sI https://mama.aivara.se | head -1
