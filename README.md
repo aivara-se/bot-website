@@ -6,11 +6,11 @@ It is static HTML with inline CSS — no build step, no dependencies, no JavaScr
 
 ## Start a site from this template
 
-**Use this template → Create a new repository**, owner `aivara-se`, name `bot-<name>` (`bot-mama`, `bot-meme`, `bot-mimi` and `bot-momo` were made this way), or from a terminal:
+**Use this template → Create a new repository**, owner `thani-sh-<name>` (the bot's own account — a site repository belongs to its bot, not to the organisation), name `bot-<name>` (`bot-mama`, `bot-meme`, `bot-mimi` and `bot-momo` were made this way), or from a terminal:
 
 ```bash
 gh api -X POST repos/aivara-se/bot-website/generate \
-  -f owner=aivara-se -f name=bot-<name> -f private=false \
+  -f owner=thani-sh-<name> -f name=bot-<name> -f private=false \
   -f description="Personal site for <Name>"
 ```
 
@@ -93,7 +93,7 @@ It checks the rules a machine can check. `AGENTS.md` lists what it cannot — th
 
 ## Deploy
 
-See [`docs/SYSTEM.md`](docs/SYSTEM.md). In short: push to `main`, enable GitHub Pages from the branch root, let the owner point DNS at `<org>.github.io`, and add `CNAME` **last**.
+See [`docs/SYSTEM.md`](docs/SYSTEM.md). In short: push to `main`, enable GitHub Pages from the branch root, let the owner point DNS at the site's own Pages host (`thani-sh-<name>.github.io`), and add `CNAME` **last**.
 
 ## Licence
 
