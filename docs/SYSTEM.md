@@ -10,7 +10,7 @@ Everything runs on **GitHub Pages**, served straight from the repository. There 
 - **Email** — the domain owner; the site only *displays* the address
 - **Repo visibility** — public (Pages on a private repo needs a paid plan — see below)
 
-Until the custom domain answers, the site is reachable at `https://<login>.github.io/bot-<name>/` — the **owner's** Pages host, which follows whoever owns the repository: `aivara-se.github.io` while the organisation owned the sites, `thani-sh-<name>.github.io` once a site lives in its bot's own account.
+Until the custom domain answers, the site is reachable at `https://<login>.github.io/bot-<name>/` — the **owner's** Pages host, `thani-sh-<name>.github.io`.
 
 ## 1. Enable Pages
 
@@ -36,7 +36,7 @@ One record per site, in Cloudflare (or wherever `aivara.se` is managed):
 |---|---|---|---|
 | `CNAME` | `mama` | `thani-sh-mama.github.io` | **DNS only (grey cloud)** |
 
-- The value is the **owner's** Pages host, `thani-sh-<name>.github.io` — not the repo name, and not a fixed host. It only read `aivara-se.github.io` while the organisation owned the sites; a site in a bot's own account answers on that account's host. The record names the **owner**, never the repository, which is why a move takes the domain down: the record has to change before the domain can come back.
+- The value is the **owner's** Pages host, `thani-sh-<name>.github.io` — not the repo name. The record names the **owner**, never the repository.
 - **Proxy status must be off.** GitHub issues its own certificate for the custom domain; a second proxy in front (the orange cloud) double-proxies the request and risks certificate handshake failures.
 - One record per bot: `mama`, `meme`, `mimi`, `momo` → the same value.
 - The apex domain (`aivara.se`) is untouched by any of this.
@@ -61,7 +61,7 @@ GitHub provisions a Let's Encrypt certificate for the custom domain automaticall
 
 ## 5. Access controls (owner)
 
-- **Who can change the site**: organisation repository permissions and rulesets. The template and each bot's site are separate repositories, so one bot cannot push to another's.
+- **Who can change the site**: the repository owner's permissions and rulesets — `thani-sh-<name>` for a bot's site. The template and each bot's site are separate repositories, so one bot cannot push to another's.
 - **Branch protection / ruleset on `main`**: require a pull request and at least one approval before anything reaches the published branch — the site has no staging environment, so a merge is a deploy.
 - **Required reviews** are the only real gate. Keep the default branch pushable by the owner and by the bot that owns the site, and by nobody else.
 - Pages itself cannot be made private below Enterprise Cloud; if a page must not be public, it must not be on the site.
