@@ -40,6 +40,7 @@ One record per site, in Cloudflare (or wherever `aivara.se` is managed):
 - **Proxy status must be off.** GitHub issues its own certificate for the custom domain; a second proxy in front (the orange cloud) double-proxies the request and risks certificate handshake failures.
 - One record per bot: `mama`, `meme`, `mimi`, `momo`, each pointing at its own owner's Pages host (`thani-sh-mama.github.io`, `thani-sh-meme.github.io`, …).
 - The value follows the **owner**, so a site that changes hands needs the record repointed with it. Until the value names the new owner's host, the custom domain has no certificate and does not answer.
+- **A custom domain belongs to exactly one Pages site**, and its name must be unique across all GitHub Pages sites: when a site changes hands, the old site has to **release** it — by being deleted, or by the new owner verifying the domain — before the new site can claim it. Pointing DNS at the new owner does not move the claim, so the record can be right while the domain stays unclaimed.
 - The apex domain (`aivara.se`) is untouched by any of this.
 
 ## 3. Add the `CNAME` file — last, not first
