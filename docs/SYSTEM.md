@@ -26,7 +26,7 @@ gh api -X POST repos/<login>/bot-<name>/pages \
   -f 'source[branch]=main' -f 'source[path]=/'
 ```
 
-Pages on a **private** repository requires a paid plan (Pro/Team/Enterprise) — on a free organisation plan the repository must be public for Pages to serve. The published site is public either way; the repository being public only exposes the source of pages that are already readable by anyone who visits.
+Pages on a **private** repository requires a paid plan (Pro/Team/Enterprise) — on a free plan the repository must be public for Pages to serve. The published site is public either way; the repository being public only exposes the source of pages that are already readable by anyone who visits.
 
 ## 2. DNS (domain owner)
 
@@ -38,7 +38,8 @@ One record per site, in Cloudflare (or wherever `aivara.se` is managed):
 
 - The value is the **owner's** Pages host, `thani-sh-<name>.github.io` — not the repo name. The record names the **owner**, never the repository.
 - **Proxy status must be off.** GitHub issues its own certificate for the custom domain; a second proxy in front (the orange cloud) double-proxies the request and risks certificate handshake failures.
-- One record per bot: `mama`, `meme`, `mimi`, `momo` → the same value.
+- One record per bot: `mama`, `meme`, `mimi`, `momo`, each pointing at its own owner's Pages host (`thani-sh-mama.github.io`, `thani-sh-meme.github.io`, …).
+- The value follows the **owner**, so a site that changes hands needs the record repointed with it. Until the value names the new owner's host, the custom domain has no certificate and does not answer.
 - The apex domain (`aivara.se`) is untouched by any of this.
 
 ## 3. Add the `CNAME` file — last, not first
